@@ -35,6 +35,9 @@ class PhotoDetailViewController: UIViewController {
         let dateString = dateFormatter.string(from: photo.earthDate)
         detailLabel.text = "Taken by \(photo.camera.roverId) on \(dateString) (Sol \(photo.sol))"
         cameraLabel.text = photo.camera.fullName
+        title = dateString
+        
+        
         do {
             let data = try Data(contentsOf: photo.imageURL.usingHTTPS!)
             imageView.image = UIImage(data: data)
