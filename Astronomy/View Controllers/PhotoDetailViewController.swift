@@ -32,12 +32,12 @@ class PhotoDetailViewController: UIViewController {
     
     private func updateViews() {
         guard let photo = photo, isViewLoaded else { return }
+        let dateString = dateFormatter.string(from: photo.earthDate)
+        detailLabel.text = "Taken by \(photo.camera.roverId) on \(dateString) (Sol \(photo.sol))"
+        cameraLabel.text = photo.camera.fullName
         do {
             let data = try Data(contentsOf: photo.imageURL)
             imageView.image = UIImage(data: data)
-            let dateString = dateFormatter.string(from: photo.earthDate)
-            detailLabel.text = "Taken by \(photo.camera.roverId) on \(dateString) (Sol \(photo.sol))"
-            cameraLabel.text = photo.camera.fullName
         } catch {
             NSLog("Error setting up views on detail view controller: \(error)")
         }
