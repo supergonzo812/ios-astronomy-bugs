@@ -31,7 +31,14 @@ class PhotoDetailViewController: UIViewController {
                     }
                 })
             default:
-                // FIXME: Show an alert because the user was not authorized
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Could Not Save Image",
+                                                  message: "Astronomy does not have access to your Photo Library.  Please change this in Settings if you would like to save images.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok",
+                                                  style: .default,
+                                                  handler: nil))
+                }
                 break
             }
         }
