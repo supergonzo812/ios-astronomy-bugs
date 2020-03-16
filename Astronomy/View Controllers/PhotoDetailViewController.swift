@@ -36,7 +36,7 @@ class PhotoDetailViewController: UIViewController {
         detailLabel.text = "Taken by \(photo.camera.roverId) on \(dateString) (Sol \(photo.sol))"
         cameraLabel.text = photo.camera.fullName
         do {
-            let data = try Data(contentsOf: photo.imageURL)
+            let data = try Data(contentsOf: photo.imageURL.usingHTTPS!)
             imageView.image = UIImage(data: data)
         } catch {
             NSLog("Error setting up views on detail view controller: \(error)")
